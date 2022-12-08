@@ -39,6 +39,7 @@ binary_sensor | Only displays basic boolean state, device class is not supported
 input_boolean | Toggling of its state is supported.
 light | Only turning on/off is supported, the rest like colour, brightness, etc. are not supported.
 button | Push/Trigger a button
+input_button | Push/Trigger an input button
 lock | Both locking and unlocking are supported.
 cover | Both closing and opening the cover is supported.
 fan | Turning on and off is supported. Changing speed is not.

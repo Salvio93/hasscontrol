@@ -60,7 +60,8 @@ class ViewController {
         Hass.TYPE_FAN,
         Hass.TYPE_BINARY_SENSOR,
         Hass.TYPE_INPUT_BOOLEAN,
-        Hass.TYPE_BUTTON
+        Hass.TYPE_BUTTON,
+        Hass.TYPE_INPUT_BUTTON
       ]
     );
 

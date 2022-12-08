@@ -322,7 +322,7 @@ module Hass {
         action = Client.ENTITY_ACTION_OPEN_COVER;
         loadingText = "Opening";
       }
-    } else if (entity.getType() == Entity.TYPE_BUTTON) {
+    } else if (entity.getType() == Entity.TYPE_BUTTON || entity.getType() == Entity.TYPE_INPUT_BUTTON) {
       action = Client.ENTITY_ACTION_PRESS;
       loadingText = "Pressing";
     } else {

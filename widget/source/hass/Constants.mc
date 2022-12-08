@@ -21,6 +21,7 @@ module Hass {
         TYPE_INPUT_BOOLEAN,
         TYPE_AUTOMATION,
         TYPE_BUTTON,
+        TYPE_INPUT_BUTTON,
         TYPE_UNKNOWN
     }
 
