@@ -54,7 +54,7 @@ script* | Execution
 ### Installation
 The easiest way to install the app is to download and install the [ConnectIQ app](https://support.garmin.com/en-US/?faq=mmm2rz2WBI3zbdFQYdiwX8) from Garmin on your smartphone.
 
-Once you have the app installed on your paired phone you can browse for widget and find the app by name, [HassControl](https://apps.garmin.com/en-US/apps/47f64742-cf59-4d54-b368-841a347f7c6d).
+Once you have the app installed on your paired phone you can browse for widget and find the app by name, [HassControl](https://apps.garmin.com/en-US/apps/3dce2242-473f-4f13-a6a9-299c3686611f).
 
 ### Configuration
 Open the widget settings in the ConnectIQ app.
