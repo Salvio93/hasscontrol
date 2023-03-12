@@ -47,6 +47,7 @@ switch | Only turning on/off, energy consumption and standby mode are not suppor
 automation* | Can be turned on/off.
 scene* | Execution
 script* | Execution
+sensor | Display values for the following sensor types: temperature, humidity, CO2, PM10, PM25
 
 
 \* marked are not entities in the true sense of the word, but why have two tables
