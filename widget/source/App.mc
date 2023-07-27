@@ -18,9 +18,9 @@ class HassControlApp extends App.AppBase {
 
   /*
    * TODO:
-   * - Flytta all strings till xml
-   * - Skapa en custom meny som man kan rendera om
-   * - Ta kontroll äver view hanteringen för att bli av med blinkande views
+   * - Move all strings to xml
+   * - Create a custom menu that can rerender
+   * - Take control over the view handeling to get rid of blinking views
    *
   */
 

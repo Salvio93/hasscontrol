@@ -27,8 +27,8 @@ class ViewController {
 
 
   // TODO:
-  // Delay för att stänga loader
-  // vad händer om användaren stänger loader innan appen stänger loader?
+  // Delay to close the loader
+  // What happens if the user closes the loader before the app closes the loader?
 
 
   // Since the progress bar is not a normal view,
