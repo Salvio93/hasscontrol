@@ -1,0 +1,36 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - name: Build with Monkey C
+      run: |
+        cd ~
+        wget https://hatl.at/devices.zip
+        unzip devices.zip >/dev/null && echo unzip of "Devices" folder successful
+        cd -
+        mkdir SDK
+        cd SDK
+        wget https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-4.1.4-2022-06-07-f86da2dee.zip
+        unzip connectiq-sdk-lin-4.1.4-2022-06-07-f86da2dee.zip >/dev/null && echo unzip of SDK successful
+        echo "sdk.location=$(pwd)" > ../widget/local.properties
+        export PATH=$PATH:$(pwd)/bin
+        cd ../widget
+        monkeyc -y developer_key_CI -f monkey.jungle -w -o output.prg
+        monkeyc -y developer_key_CI -f monkey.jungle -w -e -o /tmp/output.iq
