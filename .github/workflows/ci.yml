@@ -33,4 +33,7 @@ jobs:
         export PATH=$PATH:$(pwd)/bin
         cd ../widget
         monkeyc -y developer_key_CI -f monkey.jungle -w -o output.prg
+        echo -------------------------------------------------------------------------------
+        echo ----------------- prg build finished - starting iq file build -----------------
+        echo -------------------------------------------------------------------------------
         monkeyc -y developer_key_CI -f monkey.jungle -w -e -o /tmp/output.iq
