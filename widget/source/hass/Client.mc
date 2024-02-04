@@ -132,7 +132,6 @@ module Hass {
                 return;
             }
 
-            var service = "scene";
             var serviceAction = "turn_on";
             var newState = "on";
 

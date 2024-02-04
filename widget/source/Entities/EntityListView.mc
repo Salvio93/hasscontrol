@@ -367,9 +367,5 @@ class EntityListView extends Ui.View {
 
     return;
 
-
-
-    var WHITE = Graphics.COLOR_WHITE;
-    var BLACK = Graphics.COLOR_BLACK;
   }
 }
