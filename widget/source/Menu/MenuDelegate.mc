@@ -23,6 +23,12 @@ class MenuDelegate extends Ui.Menu2InputDelegate {
             App.getApp().viewController.switchSceneView();
             return true;
         }
+        if (itemId == MenuController.MENU_SWITCH_TO_ENTITIES_SCENES) {
+            Ui.popView(Ui.SLIDE_IMMEDIATE);
+
+            App.getApp().viewController.switchEntitySceneView();
+            return true;
+        }
         if (itemId == MenuController.MENU_LOGOUT) {
             Ui.popView(Ui.SLIDE_IMMEDIATE);
             Ui.popView(Ui.SLIDE_IMMEDIATE);

@@ -6,6 +6,7 @@ class MenuController {
     enum {
         MENU_SWITCH_TO_SCENES,
         MENU_SWITCH_TO_ENTITIES,
+        MENU_SWITCH_TO_ENTITIES_SCENES,
         MENU_ENTER_SETTINGS,
         MENU_LOGIN,
 
@@ -42,6 +43,12 @@ class MenuController {
                 "Entities",
                 "",
                 MenuController.MENU_SWITCH_TO_ENTITIES,
+                {}
+            ));
+            menu.addItem(new Ui.MenuItem(
+                "Entities&Scenes",
+                "",
+                MenuController.MENU_SWITCH_TO_ENTITIES_SCENES,
                 {}
             ));
             menu.addItem(new Ui.MenuItem(
