@@ -1,4 +1,7 @@
 using Toybox.WatchUi as Ui;
+using Toybox.Timer;
+using Toybox.System;
+
 
 class Error {
     static var ERROR_UNKNOWN = 0;
@@ -8,10 +11,16 @@ class Error {
     var message;
     var context;
 
+    function exitApplication() {
+        System.exit();
+    }
+
     function initialize(errorCode) {
         if (errorCode == Error.ERROR_PHONE_NOT_CONNECTED) {
             code = Error.ERROR_PHONE_NOT_CONNECTED;
             message = Rez.Strings.Error_PhoneNotConnected;
+            var exitTimer = new Timer.Timer();
+            exitTimer.start(method(:exitApplication), 2500, true);
             return;
         }
 
