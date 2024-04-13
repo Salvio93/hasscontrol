@@ -14,8 +14,8 @@ module Hass {
             ENTITY_ACTION_TURN_OFF,
             ENTITY_ACTION_LOCK,
             ENTITY_ACTION_UNLOCK,
-            ENTITY_ACTION_CLOSE_COVER,
-            ENTITY_ACTION_OPEN_COVER,
+            ENTITY_ACTION_CLOSE,
+            ENTITY_ACTION_OPEN,
             ENTITY_ACTION_PRESS
         }
 
@@ -141,11 +141,11 @@ module Hass {
             } else if (action == Client.ENTITY_ACTION_TURN_OFF) {
                 serviceAction = "turn_off";
                 newState = "off";
-            } else if (action == Client.ENTITY_ACTION_CLOSE_COVER) {
-                serviceAction = "close_cover";
+            } else if (action == Client.ENTITY_ACTION_CLOSE) {
+                serviceAction = "close";
                 newState = "closed";
-            } else if (action == Client.ENTITY_ACTION_OPEN_COVER) {
-                serviceAction = "open_cover";
+            } else if (action == Client.ENTITY_ACTION_OPEN) {
+                serviceAction = "open";
                 newState = "open";
             } else if (action == Client.ENTITY_ACTION_LOCK) {
                 serviceAction = "lock";

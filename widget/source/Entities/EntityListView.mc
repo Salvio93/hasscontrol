@@ -221,6 +221,12 @@ class EntityListView extends Ui.View {
         } else if (state == Hass.STATE_OFF) {
             drawable = WatchUi.loadResource(Rez.Drawables.SwitchOff);
         }
+    } else if (type == Hass.TYPE_VALVE) {
+        if (state == Hass.STATE_OPEN) {
+            drawable = WatchUi.loadResource(Rez.Drawables.ValveOpen);
+        } else if (state == Hass.STATE_CLOSED) {
+            drawable = WatchUi.loadResource(Rez.Drawables.ValveClosed);
+        }
     } else if (type == Hass.TYPE_INPUT_BOOLEAN) {
         if (state == Hass.STATE_ON) {
             drawable = WatchUi.loadResource(Rez.Drawables.CheckboxOn);
@@ -239,7 +245,7 @@ class EntityListView extends Ui.View {
         } else if (state == Hass.STATE_UNLOCKED) {
             drawable = WatchUi.loadResource(Rez.Drawables.LockUnlocked);
         }
-    } else if (type == Hass.TYPE_COVER) {
+    } else if (type == Hass.TYPE_COVER || type == Hass.TYPE_VALVE) {
         if (state == Hass.STATE_OPEN) {
             drawable = WatchUi.loadResource(Rez.Drawables.CoverOpen);
         } else if (state == Hass.STATE_CLOSED) {

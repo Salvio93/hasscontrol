@@ -85,6 +85,8 @@ module Hass {
         _mType = TYPE_LIGHT;
       } else if (_mId.find("switch.") != null) {
         _mType = TYPE_SWITCH;
+      } else if (_mId.find("valve.") != null) {
+        _mType = TYPE_VALVE;
       } else if (_mId.find("automation.") != null) {
         _mType = TYPE_AUTOMATION;
       } else if (_mId.find("script.") != null) {

@@ -345,12 +345,12 @@ module Hass {
         action = Client.ENTITY_ACTION_UNLOCK;
         loadingText = "Unlocking";
       }
-    } else if (entity.getType() == Entity.TYPE_COVER) {
+    } else if (entity.getType() == Entity.TYPE_COVER || entity.getType() == Entity.TYPE_VALVE) {
       if (currentState == Entity.STATE_OPEN) {
-        action = Client.ENTITY_ACTION_CLOSE_COVER;
+        action = Client.ENTITY_ACTION_CLOSE;
         loadingText = "Closing";
       } else if (currentState == Entity.STATE_CLOSED) {
-        action = Client.ENTITY_ACTION_OPEN_COVER;
+        action = Client.ENTITY_ACTION_OPEN;
         loadingText = "Opening";
       }
     } else if (entity.getType() == Entity.TYPE_BUTTON || entity.getType() == Entity.TYPE_INPUT_BUTTON) {
@@ -373,6 +373,8 @@ module Hass {
       entityType = "light";
     } else if (entity.getType() == Entity.TYPE_SWITCH) {
       entityType = "switch";
+    } else if (entity.getType() == Entity.TYPE_VALVE) {
+      entityType = "valve";
     } else if (entity.getType() == Entity.TYPE_AUTOMATION) {
       entityType = "automation";
     } else if (entity.getType() == Entity.TYPE_SCRIPT) {
