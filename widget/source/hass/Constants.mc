@@ -50,6 +50,7 @@ module Hass {
         SENSOR_TEMPERATUE,
         SENSOR_HUMIDITY,
         SENSOR_CO2,
-        SENSOR_PM
+        SENSOR_PM,
+        SENSOR_OTHER
     }
 }

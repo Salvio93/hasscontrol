@@ -167,7 +167,7 @@ module Hass {
           sensorClass = SENSOR_PM;
         }
       } else {
-        sensorClass = null;
+        sensorClass = SENSOR_OTHER;
       }
     }
 
