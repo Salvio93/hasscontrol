@@ -4,7 +4,9 @@ module Hass {
     const HASS_STATE_ON = "on";
     const HASS_STATE_OFF = "off";
     const HASS_STATE_LOCKED = "locked";
+    const HASS_STATE_LOCKING = "locking";
     const HASS_STATE_UNLOCKED = "unlocked";
+    const HASS_STATE_UNLOCKING = "unlocking";
     const HASS_STATE_OPENING = "opening";
     const HASS_STATE_OPEN = "open";
     const HASS_STATE_CLOSING = "closing";
