@@ -291,6 +291,16 @@ module Hass {
     client.getEntity(group, null, Utils.method(Hass, :_onReceiveEntities));
   }
 
+  function _onBatteryUpdate(err, data) {
+      if (err != null) {
+        System.println("Battery update error: " + err.toShortString());
+      }
+  }
+
+  function reportBatteryValue(entity_id) {
+    client.reportBatteryValue(entity_id, Utils.method(Hass, :_onBatteryUpdate));
+  }
+
   function onToggleEntityStateCompleted(error, data) {
     if (error != null) {
       App.getApp().viewController.removeLoaderImmediate();

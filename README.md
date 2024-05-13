@@ -77,6 +77,27 @@ I will describe this procedure in more detail below.
 
 ***Note:*** *The default start view is filtered to scenes and will not show light, switches etc., the start view can be changed in the widget settings in your Garmin device.*
 
+**Battery percentage reporting**
+
+Configure an arbitrary entity name (a-z, 0-9, _) to which the battery status of the watch should be reported.
+e.g., "venu2_battery" (**excluding** the "sensor." prefix)
+The battery value is being sent to Home Assistance once when the app is started.
+The corresponding entity is created automatically (e.g., "sensor.venu2_battery").
+
+***Optionally***, you can configure a dedicated entity **before** the first use:
+
+```
+- template
+  - sensor:
+      - name: My Garmin Device
+        device_class: "battery"
+        unit_of_measurement: "%"
+        state: 0
+        unique_id: MyGarminDevice123
+```
+Then enter the corresponding entity name in the ConnectIQ app settings (excluding the "sensor." prefix)
+e.g., "my_garmin_device"
+
 ### Logging in
 Once you have configured all settings in the ConnectIQ app, the next step will be to login.
 

@@ -2,6 +2,7 @@ using Toybox.Communications as Comm;
 using Toybox.Application as App;
 using Toybox.StringUtil;
 using Hass;
+using Utils;
 
 (:glance)
 module Hass {
@@ -182,5 +183,26 @@ module Hass {
             );
         }
 
+        function reportBatteryValue(entity_id, callback) {
+            var state = System.getSystemStats().battery.toNumber();
+            makeAuthenticatedWebRequest(
+                _baseUrl + "/api/states/sensor." + entity_id,
+                {
+                    "state" => state,
+                    "attributes" => {
+                        "unit_of_measurement" => "%",
+                        "device_class" => "battery"
+                    }
+                },
+                {
+                    :method => Comm.HTTP_REQUEST_METHOD_POST,
+                    :context => {
+                        :entityId => entity_id,
+                        :state => state,
+                    }
+                },
+                callback
+            );
+        }
     }
 }
