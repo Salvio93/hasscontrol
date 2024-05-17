@@ -71,6 +71,7 @@ module Hass {
     hidden var _mExt; // Is this entity loaded from settings?
     hidden var _mSensorValue; // Custom state info text
     hidden var _mSensorClass; // Device class for sensor
+    hidden var _mTransitioning; // For devices which have longer transitioning times from one stat to another (like some smart locks turning the key)
 
     function initialize(entity) {
       _mId = entity[:id];
@@ -78,6 +79,7 @@ module Hass {
       _mState = Entity.stringToState(entity[:state]);
       _mExt = entity[:ext] == true;
       _mSensorClass = entity[:sensorClass];
+      _mTransitioning = false;
 
       if (_mId.find("scene.") != null) {
         _mType = TYPE_SCENE;
@@ -172,6 +174,14 @@ module Hass {
 
     function setSensorClass(newSensorClass) {
       _mSensorClass = newSensorClass;
+    }
+
+    function getTransitioning() {
+      return _mTransitioning;
+    }
+
+    function setTransitioning(newState) {
+      _mTransitioning = newState;
     }
 
     function isExternal() {
