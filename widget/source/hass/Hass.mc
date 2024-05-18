@@ -221,14 +221,9 @@ module Hass {
     if (_entitiesToRefresh.size() > 0) {
       var entity = _entitiesToRefresh[0];
 
-      if(entity.getTransitioning()) {
-        entity.setTransitioning(false);
-      }
-      else {
-        _entitiesToRefresh.remove(entity);
+      _entitiesToRefresh.remove(entity);
 
-        refreshEntity(entity, Utils.method(Hass, :_refreshPendingEntities));
-      }
+      refreshEntity(entity, Utils.method(Hass, :_refreshPendingEntities));
     } else {
       // We need to finalize with reading the scenes from settings again,
       // so that the name config takes precedence
@@ -353,7 +348,6 @@ module Hass {
       action = Client.ENTITY_ACTION_TURN_ON;
       loadingText = "Running";
     } else if (entity.getType() == Entity.TYPE_LOCK) {
-      entity.setTransitioning(true);
       if (currentState == Entity.STATE_UNLOCKED) {
         action = Client.ENTITY_ACTION_LOCK;
         loadingText = "Locking";
