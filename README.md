@@ -23,7 +23,7 @@ Please read through the instructions below, I will try to guide you through the 
 
 
 ### Prerequisites
-In order to use this widget you need to have an Home Assistant instance accessible over https.
+In order to use this widget you need to have an Home Assistant instance accessible over https using an official SSL certificate (no self-signed).
 
 As all communication from Garmin watches go thru the mobile device, you also need to have a paired mobile phone, and the Garmin Connect app needs to be running on that phone.
 
