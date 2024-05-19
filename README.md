@@ -155,7 +155,7 @@ You can get them either by using the Caddy config below or use Let's Encrypt dir
 
 See also https://github.com/hatl/hasscontrol/issues/17 for further details.
 
-```json
+```
 home-assistant.mydomain.com {
     @internal {
         remote_ip 192.168.0.0/24
