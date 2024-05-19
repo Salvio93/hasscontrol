@@ -81,7 +81,7 @@ I will describe this procedure in more detail below.
 
 Configure an arbitrary entity name (a-z, 0-9, _) to which the battery status of the watch should be reported.
 e.g., "venu2_battery" (**excluding** the "sensor." prefix)
-The battery value is being sent to Home Assistance once when the app is started.
+The battery value is being sent to Home Assistant once - when the app is started.
 The corresponding entity is created automatically (e.g., "sensor.venu2_battery").
 
 ***Optionally***, you can configure a dedicated entity **before** the first use:
@@ -135,7 +135,7 @@ group:
       - switch.tv
       - script.turn_lights_for_10_min
 ```
-***Note***: *Remember after changing the configuration, you have to either reload the groups or restart the Home Assitant.*
+***Note***: *Remember after changing the configuration, you have to either reload the groups or restart the Home Assistant.*
 
 Then write the id of the group you have just created (in our case `group.garmin`) into the ConnectIQ app widget settings as described [above](#configuration).
 
