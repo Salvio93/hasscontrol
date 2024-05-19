@@ -146,6 +146,29 @@ If you done some modification to the group in Home Assistant, you can at any tim
 
 ### FAQ
 
+#### Unknown error -300 - Self-Signed SSL Certificate
+Are you using a self-signed certificate? Unfortunately, this is not supported.
+Importing your certificate on the phone only makes it available on the phone.
+It would have to be added on the watch (which is - at least currently - not possible)
+So having an "official" SSL certificate is currently a must-have.
+You can get them either by using the Caddy config below or use Let's Encrypt directly or by buying a certificate - which have become quite cheap.
+
+See also https://github.com/hatl/hasscontrol/issues/17 for further details.
+
+```json
+home-assistant.mydomain.com {
+    @internal {
+        remote_ip 192.168.0.0/24
+    }
+    handle @internal {
+        reverse_proxy 192.168.0.1:8123 {
+        header_up X-Forwarded-Host {host}
+      }
+    }
+    respond 403
+}
+```
+
 #### Error message: "Check settings, invalid url"
 Check if you are using correct url with `https` prefix, because only secure HTTPS communication is allowed. This limitation comes from Garmin. 
 
