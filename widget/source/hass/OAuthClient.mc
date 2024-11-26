@@ -16,6 +16,8 @@ module Hass {
 
         hidden var _isLoggingIn;
         hidden var _isFetchingAccessToken;
+        hidden var _additionalHeaderKey;
+        hidden var _additionalHeaderValue;
 
         function initialize(options) {
             Comm.registerForOAuthMessages(method(:onReceiveCode));
@@ -28,6 +30,8 @@ module Hass {
             _tokenCallbacks = new [0];
             _isLoggingIn = false;
             _isFetchingAccessToken = false;
+            _additionalHeaderKey = App.Properties.getValue("additional_header_key");
+            _additionalHeaderValue = App.Properties.getValue("additional_header_value");
         }
 
         function onSettingsChanged() {
@@ -278,6 +282,10 @@ module Hass {
                     :context => context[:options][:context]
                 }
             };
+
+            if (_additionalHeaderKey.length() > 0) {
+                options[:headers][_additionalHeaderKey] = _additionalHeaderValue;
+            }
 
             var passedOptions = context[:options];
 
