@@ -14,12 +14,17 @@ Please read through the instructions below, I will try to guide you through the 
 
 - [HassControl](#hasscontrol)
   - [Prerequisites](#prerequisites)
-  - [Supported entity types table](#supported-entity-types)
+  - [Supported entity types](#supported-entity-types)
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Logging in](#logging-in)
   - [Group sync](#group-sync)
+  - [Header Authentication](#header-authentication)
   - [FAQ](#faq)
+    - [Unknown error -300 - Self-Signed SSL Certificate](#unknown-error--300---self-signed-ssl-certificate)
+    - [Error message: "Check settings, invalid url"](#error-message-check-settings-invalid-url)
+    - [Some entities from my group are missing in my Garmin device](#some-entities-from-my-group-are-missing-in-my-garmin-device)
+    - [Changed entity state doesn't show immediately in HassControl](#changed-entity-state-doesnt-show-immediately-in-hasscontrol)
 
 
 ### Prerequisites
@@ -144,6 +149,29 @@ Once that is done, all entities added to that group in Home Assistant and suppor
 
 If you done some modification to the group in Home Assistant, you can at any time repeat this procedure to add, update or remove entities from your watch.
 
+### Header Authentication
+
+Since `v1.5.0` it's possible to specify an arbitraty header in the settings.
+It's being added to all requests from the ConnectIQ device.
+This can serve for authentication - e.g., like available for Cloudflare: https://developers.cloudflare.com/workers/examples/auth-with-headers/
+
+If you use Caddy, you can implement this in the following way:
+
+```
+my-home-assistant.com {
+     @headerauth {
+         header X-Custom-PSK MY-PRE-SHARED-KEY
+     }
+     handle @headerauth {
+        reverse_proxy 192.168.0.1:8123 {
+          header_up -X-Custom-PSK
+          header_up X-Forwarded-Host {host}
+        }
+     }
+     respond 403
+ }
+```
+
 ### FAQ
 
 #### Unknown error -300 - Self-Signed SSL Certificate
@@ -170,7 +198,7 @@ home-assistant.mydomain.com {
 ```
 
 #### Error message: "Check settings, invalid url"
-Check if you are using correct url with `https` prefix, because only secure HTTPS communication is allowed. This limitation comes from Garmin. 
+Check if you are using correct url with `https` prefix, because only secure HTTPS communication is allowed. This limitation comes from Garmin.
 
 #### Some entities from my group are missing in my Garmin device
 Not all Home Assistant entity types are currently supported by HassControl, you should take a look at [supported entity types table](#supported-entity-types).
