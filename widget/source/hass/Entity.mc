@@ -27,6 +27,12 @@ module Hass {
       if (HASS_STATE_UNLOCKED.equals(stateInText)) {
         return STATE_UNLOCKED;
       }
+      if (HASS_STATE_LOCKING.equals(stateInText)) {
+        return STATE_LOCKING;
+      }
+      if (HASS_STATE_UNLOCKING.equals(stateInText)) {
+        return STATE_UNLOCKING;
+      }
       if (HASS_STATE_OPEN.equals(stateInText)) {
         return STATE_OPEN;
       }
@@ -67,6 +73,12 @@ module Hass {
       }
       if (state == STATE_UNLOCKED) {
         return HASS_STATE_UNLOCKED;
+      }
+      if (state == STATE_LOCKING) {
+        return HASS_STATE_LOCKING;
+      }
+      if (state == STATE_UNLOCKING) {
+        return HASS_STATE_UNLOCKING;
       }
 
       if (state == null) {
@@ -162,6 +174,8 @@ module Hass {
         && newState != STATE_OFF
         && newState != STATE_LOCKED
         && newState != STATE_UNLOCKED
+        && newState != STATE_LOCKING
+        && newState != STATE_UNLOCKING
         && newState != STATE_CLOSED
         && newState != STATE_CLOSING
         && newState != STATE_OPEN
@@ -193,7 +207,7 @@ module Hass {
     }
 
     function isTransitional() {
-      return _mState == STATE_CLOSING || _mState == STATE_OPENING;
+      return _mState == STATE_CLOSING || _mState == STATE_OPENING || _mState == STATE_LOCKING || _mState == STATE_UNLOCKING;
     }
 
     function setExternal(isExternal) {

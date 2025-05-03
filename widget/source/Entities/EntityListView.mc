@@ -244,6 +244,8 @@ class EntityListView extends Ui.View {
             drawable = WatchUi.loadResource(Rez.Drawables.LockLocked);
         } else if (state == Hass.STATE_UNLOCKED) {
             drawable = WatchUi.loadResource(Rez.Drawables.LockUnlocked);
+        } else if  (state == Hass.STATE_LOCKING || state == Hass.STATE_UNLOCKING) {
+            drawable = WatchUi.loadResource(Rez.Drawables.LockChanging);
         }
     } else if (type == Hass.TYPE_COVER || type == Hass.TYPE_VALVE) {
         if (state == Hass.STATE_OPEN) {
