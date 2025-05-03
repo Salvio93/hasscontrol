@@ -26,7 +26,7 @@ jobs:
         mkdir ~/sdk
         cd ~/sdk
         wget https://developer.garmin.com/downloads/connect-iq/sdks/connectiq-sdk-lin-8.1.1-2025-03-27-66dae750f.zip
-        unzip -qq connectiq-sdk-lin-6.4.2-2024-01-04-a1dd13ee0.zip
+        unzip -qq connectiq-sdk-lin-8.1.1-2025-03-27-66dae750f.zip
         echo ~/sdk/bin >> $GITHUB_PATH
 
     - name: Set SDK location
