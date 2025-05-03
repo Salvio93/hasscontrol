@@ -2,6 +2,7 @@ using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System;
 using Toybox.Timer;
+using Toybox.Lang;
 
 using Utils;
 
@@ -341,6 +342,17 @@ module Hass {
     }
 
     App.getApp().viewController.removeLoader();
+
+    // Check if we should exit after action
+    if (App.Properties.getValue("closeAfterAction")) {
+      // Small delay before exiting to ensure UI updates are seen by user
+      var exitTimer = new Timer.Timer();
+      exitTimer.start(Utils.method(Hass, :exitApplication), 2000, false);
+    }
+  }
+
+  function exitApplication() {
+    System.exit();
   }
 
   function toggleEntityState(entity) {
