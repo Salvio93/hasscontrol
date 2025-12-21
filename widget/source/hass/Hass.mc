@@ -125,16 +125,24 @@ module Hass {
     _entities = new [0];
 
     if (entities == null) {
+      System.println("loadStoredEntities: no stored entities found");
       return;
     }
 
+    System.println("loadStoredEntities: loading " + entities.size() + " entities from storage");
     for (var i = 0; i < entities.size(); i++) {
-      _entities.add(Entity.createFromDict(entities[i]));
+      var entity = Entity.createFromDict(entities[i]);
+      // Filter out null entities (from corrupted or invalid data)
+      if (entity != null) {
+        _entities.add(entity);
+      } else {
+        System.println("loadStoredEntities: skipped null entity at index " + i);
+      }
     }
 
     loadScenesFromSettings();
 
-    System.println("Loaded entities: " + _entities);
+    System.println("Loaded entities: " + _entities.size() + " total");
   }
 
   function _onReceiveEntity(err, data) {
@@ -157,12 +165,16 @@ module Hass {
     }
 
     var entity = getEntity(data[:body]["entity_id"]);
-    
-    // If entity doesn't exist, skip processing
+
+    // If entity doesn't exist, skip processing but still invoke callback to continue chain
     if (entity == null) {
       System.println("Entity not found: " + data[:body]["entity_id"]);
+      // Always try to invoke callback to prevent breaking the refresh chain
       if (data[:context] != null && data[:context][:callback] != null) {
         data[:context][:callback].invoke(null, null);
+      } else {
+        // Fallback: continue refreshing remaining entities if we're in a batch refresh
+        _refreshPendingEntities(null, null);
       }
       return;
     }
@@ -174,13 +186,13 @@ module Hass {
 
     if (data[:body]["attributes"] != null) {
       name = data[:body]["attributes"]["friendly_name"];
-      
+
       if (data[:body]["attributes"]["unit_of_measurement"] != null) {
         state = data[:body]["state"] + data[:body]["attributes"]["unit_of_measurement"];
       } else {
         state = data[:body]["state"];
       }
-      
+
       if (data[:body]["attributes"]["device_class"] != null) {
         sensorClassStr = data[:body]["attributes"]["device_class"];
         if (sensorClassStr.find("temperature") != null) {

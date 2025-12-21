@@ -162,6 +162,14 @@ class EntityListView extends Ui.View {
     }
   }
 
+  function onHide() {
+    // Stop timer when view is hidden to prevent orphaned timer callbacks
+    if (_mTimerActive) {
+      _mTimer.stop();
+      _mTimerActive = false;
+    }
+  }
+
   function drawNoEntityText(dc) {
     var vh = dc.getHeight();
     var vw = dc.getWidth();

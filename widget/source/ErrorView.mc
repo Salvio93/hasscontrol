@@ -23,6 +23,7 @@ class ErrorView extends Ui.View {
     function initialize() {
         View.initialize();
         _isActive = false;
+        _message = "Unknown Error";  // Initialize to prevent null pointer crash
     }
 
     // Load your resources here
