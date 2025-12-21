@@ -1,10 +1,21 @@
 
+using Toybox.System;
+
 module Hass {
   class Entity {
     static function createFromDict(dict) {
+      // Null safety: check for null or invalid dictionary
+      if (dict == null) {
+        System.println("Entity.createFromDict: dict is null, skipping");
+        return null;
+      }
+      if (dict["id"] == null) {
+        System.println("Entity.createFromDict: dict[id] is null, skipping");
+        return null;
+      }
       return new Entity({
         :id => dict["id"],
-        :name => dict["name"],
+        :name => dict["name"] != null ? dict["name"] : dict["id"],
         :state => dict["state"],
         :ext => dict["ext"],
         :sensorClass => dict["sensorClass"]
@@ -102,6 +113,13 @@ module Hass {
       _mState = Entity.stringToState(entity[:state]);
       _mExt = entity[:ext] == true;
       _mSensorClass = entity[:sensorClass];
+
+      // Null safety: prevent crash if _mId is null
+      if (_mId == null) {
+        System.println("Entity.initialize: entity ID is null");
+        _mType = TYPE_UNKNOWN;
+        return;
+      }
 
       if (_mId.find("scene.") != null) {
         _mType = TYPE_SCENE;

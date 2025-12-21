@@ -10,6 +10,7 @@ class Error {
     var code;
     var message;
     var context;
+    var responseCode = null;  // Added to prevent crash when checking responseCode on base Error
 
     function exitApplication() {
         System.exit();
@@ -20,7 +21,7 @@ class Error {
             code = Error.ERROR_PHONE_NOT_CONNECTED;
             message = Rez.Strings.Error_PhoneNotConnected;
             var exitTimer = new Timer.Timer();
-            exitTimer.start(method(:exitApplication), 2500, true);
+            exitTimer.start(method(:exitApplication), 2500, false);  // Changed to false to prevent repeated exit calls
             return;
         }
 
