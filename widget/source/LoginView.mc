@@ -7,10 +7,12 @@ class LoginDelegate extends Ui.BehaviorDelegate {
     }
 
     function onSelect() {
+        App.getApp().resetInactivityTimer();
         return true;
     }
 
     function onBack() {
+        App.getApp().resetInactivityTimer();
         App.getApp().viewController.showLoginView(false);
         return true;
     }

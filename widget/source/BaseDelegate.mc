@@ -7,11 +7,13 @@ class BaseDelegate extends Ui.BehaviorDelegate {
     }
 
     function onSelect() {
+        App.getApp().resetInactivityTimer();
         App.getApp().launchInitialView();
         return true;
     }
 
     function onHold(clickEvent) {
+        App.getApp().resetInactivityTimer();
         // Handle long press gesture to open menu
         App.getApp().menu.showRootMenu();
         return true;

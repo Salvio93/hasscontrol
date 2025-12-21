@@ -71,12 +71,14 @@ class EntityListDelegate extends Ui.BehaviorDelegate {
   }
 
   function onMenu() {
+    App.getApp().resetInactivityTimer();
     App.getApp().menu.showRootMenu();
 
     return true;
   }
 
   function onSelect() {
+    App.getApp().resetInactivityTimer();
     var entity = _mController.getCurrentEntity();
 
     if (entity != null) {
@@ -90,12 +92,14 @@ class EntityListDelegate extends Ui.BehaviorDelegate {
   }
 
   function onHold(clickEvent) {
+    App.getApp().resetInactivityTimer();
     // Handle long press gesture to open menu
     App.getApp().menu.showRootMenu();
     return true;
   }
 
   function onNextPage() {
+    App.getApp().resetInactivityTimer();
     var index = _mController.getIndex();
     var count = _mController.getCount();
 
@@ -116,6 +120,7 @@ class EntityListDelegate extends Ui.BehaviorDelegate {
   }
 
   function onPreviousPage() {
+    App.getApp().resetInactivityTimer();
     var index = _mController.getIndex();
     var count = _mController.getCount();
 

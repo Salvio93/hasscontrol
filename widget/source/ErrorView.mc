@@ -7,11 +7,13 @@ class ErrorDelegate extends Ui.BehaviorDelegate {
     }
 
     function onSelect() {
+        App.getApp().resetInactivityTimer();
         App.getApp().viewController.removeError();
         return true;
     }
 
     function onBack() {
+        App.getApp().resetInactivityTimer();
         App.getApp().viewController.removeError();
         return true;
     }
