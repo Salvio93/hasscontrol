@@ -97,6 +97,8 @@ I will describe this procedure in more detail below.
 
 **Close after action**: When enabled, the widget will automatically close after successfully controlling an entity (turning a light on/off, activating a scene, etc.). This can save battery but requires reopening the widget for additional actions.
 
+**Auto-close after inactivity**: Configure the number of seconds of inactivity after which the app will automatically close. Set to 0 to disable this feature (default). Valid range is 0-300 seconds. This helps conserve battery by ensuring the widget doesn't stay open indefinitely.
+
 **Battery percentage reporting**: Configure an arbitrary entity name (a-z, 0-9, _) to which the battery status of the watch should be reported.
 e.g., "venu2_battery" (**excluding** the "sensor." prefix)
 The battery value is being sent to Home Assistant once - when the app is started.

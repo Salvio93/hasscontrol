@@ -9,6 +9,7 @@ class MenuDelegate extends Ui.Menu2InputDelegate {
     }
 
     function onSelect(item) {
+        App.getApp().resetInactivityTimer();
         var itemId = item.getId();
 
         if (itemId == MenuController.MENU_SWITCH_TO_ENTITIES) {

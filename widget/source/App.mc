@@ -1,6 +1,8 @@
 using Toybox.Application as App;
 using Toybox.Communications as Comm;
 using Toybox.WatchUi as Ui;
+using Toybox.Timer;
+using Toybox.System;
 using Hass;
 
 
@@ -12,9 +14,11 @@ class HassControlApp extends App.AppBase {
 
   var viewController;
   var menu;
+  var _inactivityTimer;
 
   function initialize() {
     AppBase.initialize();
+    _inactivityTimer = new Timer.Timer();
   }
 
   /*
@@ -44,6 +48,9 @@ class HassControlApp extends App.AppBase {
   function onSettingsChanged() {
     Hass.loadScenesFromSettings();
     Hass.client.onSettingsChanged();
+
+    // Restart inactivity timer with new setting value
+    resetInactivityTimer();
 
     Ui.requestUpdate();
   }
@@ -168,9 +175,31 @@ class HassControlApp extends App.AppBase {
       Hass.reportBatteryValue(battery_entity_id);
     }
 
+    // Start inactivity timer if configured
+    resetInactivityTimer();
+
     return [
       view,
       delegate
     ];
+  }
+
+  // Reset the inactivity timer - call this on any user interaction
+  function resetInactivityTimer() {
+    var seconds = App.Properties.getValue("autoCloseSeconds");
+    if (seconds == null || seconds == 0) {
+      // Feature disabled, stop any running timer
+      _inactivityTimer.stop();
+      return;
+    }
+
+    var timeoutMs = seconds * 1000;
+    _inactivityTimer.stop();
+    _inactivityTimer.start(method(:onInactivityTimeout), timeoutMs, false);
+  }
+
+  // Called when inactivity timer expires
+  function onInactivityTimeout() {
+    System.exit();
   }
 }

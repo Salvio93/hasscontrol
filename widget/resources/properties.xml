@@ -10,6 +10,7 @@
         <property id="additional_header_key" type="string"></property>
         <property id="additional_header_value" type="string"></property>
         <property id="closeAfterAction" type="boolean">false</property>
+        <property id="autoCloseSeconds" type="number">0</property>
     </properties>
 
     <strings>
@@ -23,6 +24,7 @@
        <string id="additional_header_key_title">Additional HTTP(S) Header - Key</string>
        <string id="additional_header_value_title">Additional HTTP(S) Header - Value</string>
        <string id="closeAfterAction_title">Close App after successful action</string>
+       <string id="autoCloseSeconds_title">Auto-close after inactivity (seconds, 0=off)</string>
     </strings>
 
     <settings>
@@ -55,6 +57,9 @@
         </setting>
         <setting propertyKey="@Properties.closeAfterAction" title="@Strings.closeAfterAction_title">
             <settingConfig type="boolean" />
+        </setting>
+        <setting propertyKey="@Properties.autoCloseSeconds" title="@Strings.autoCloseSeconds_title">
+            <settingConfig type="numeric" min="0" max="300" />
         </setting>
     </settings>
 </resources>
