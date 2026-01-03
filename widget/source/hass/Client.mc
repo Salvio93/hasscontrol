@@ -200,5 +200,34 @@ module Hass {
                 callback
             );
         }
+
+
+
+
+        function setAlarmTime(hours, minutes, callback) {
+            if (validateSettings(callback) != null) {
+                return;
+            }
+
+            var timeString = hours.format("%02d") + ":" + minutes.format("%02d") + ":00";
+            
+            System.println("Setting alarm time to: " + timeString);
+
+            makeAuthenticatedWebRequest(
+                _baseUrl + "/api/services/input_datetime/set_datetime",
+                {
+                    "entity_id" => "input_datetime.sleep_alarm",
+                    "time" => timeString
+                },
+                {
+                    :method => Comm.HTTP_REQUEST_METHOD_POST,
+                    :context => {
+                        :time => timeString
+                    }
+                },
+                callback
+            );
+        }
+
     }
 }

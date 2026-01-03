@@ -149,8 +149,10 @@ module Hass {
         _mType = TYPE_BUTTON;
       } else if (_mId.find("sensor.") != null) {
         _mType = TYPE_SENSOR;
+      } else if (_mId.find("alarm.") != null) {  // ADD THIS
+          _mType = TYPE_ALARM;
       } else {
-        _mType = TYPE_UNKNOWN;
+          _mType = TYPE_UNKNOWN;
       }
     }
 

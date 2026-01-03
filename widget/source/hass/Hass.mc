@@ -139,6 +139,13 @@ module Hass {
         System.println("loadStoredEntities: skipped null entity at index " + i);
       }
     }
+    // ADD THIS: Virtual alarm entity
+    _entities.add(new Entity({
+        :id => "alarm.sleep_alarm",
+        :name => "Set Sleep Alarm",
+        :state => "off",
+        :ext => true
+    }));
 
     loadScenesFromSettings();
 
@@ -422,6 +429,11 @@ module Hass {
 
   function toggleEntityState(entity) {
     var entityId = entity.getId();
+    // ADD THIS CHECK at the beginning
+    if (entity.getType() == Entity.TYPE_ALARM) {
+        setRandomAlarm();
+        return;
+    }
     var currentState = entity.getState();
     var entityType = null;
     var action = null;
@@ -502,6 +514,39 @@ module Hass {
 
     client.setEntityState(entityId, entityType, action, Utils.method(Hass, :onToggleEntityStateCompleted));
   }
+
+  function onSetAlarmCompleted(error, data) {
+    if (error != null) {
+        App.getApp().viewController.removeLoaderImmediate();
+        App.getApp().viewController.showError(error);
+        return;
+    }
+
+    System.println("Alarm set successfully");
+    
+    App.getApp().viewController.removeLoader();
+
+    // Show confirmation
+    Ui.pushView(
+        new Ui.Confirmation("Alarm Set!"),
+        new Ui.ConfirmationDelegate(),
+        Ui.SLIDE_IMMEDIATE
+    );
+  }
+
+  function setRandomAlarm() {
+      // Generate random minutes (00-59)
+      var randomMinutes = (System.getClockTime().sec + System.getTimer()) % 60;
+      var hours = 13;
+      
+      System.println("Setting alarm to 13:" + randomMinutes.format("%02d"));
+      
+      App.getApp().viewController.showLoader("Setting Alarm");
+      
+      client.setAlarmTime(hours, randomMinutes, Utils.method(Hass, :onSetAlarmCompleted));
+  }
+
+
 }
 
 class HassController {
