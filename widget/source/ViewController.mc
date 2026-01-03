@@ -63,7 +63,8 @@ class ViewController {
         Hass.TYPE_INPUT_BOOLEAN,
         Hass.TYPE_BUTTON,
         Hass.TYPE_INPUT_BUTTON,
-        Hass.TYPE_SENSOR
+        Hass.TYPE_SENSOR,
+        Hass.TYPE_ALARM 
       ]
     );
 
@@ -90,7 +91,8 @@ class ViewController {
         Hass.TYPE_INPUT_BOOLEAN,
         Hass.TYPE_BUTTON,
         Hass.TYPE_INPUT_BUTTON,
-        Hass.TYPE_SENSOR
+        Hass.TYPE_SENSOR,
+        Hass.TYPE_ALARM
       ]
     );
 
