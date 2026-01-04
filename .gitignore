@@ -2,3 +2,5 @@
 
 build
 bin
+properties.xml
+widgets/resources/properties.xml

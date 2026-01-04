@@ -1,2 +1,4 @@
 export/
 *.bak
+properties.xml
+resources/properties.xml
