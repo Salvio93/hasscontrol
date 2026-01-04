@@ -516,37 +516,20 @@ module Hass {
     client.setEntityState(entityId, entityType, action, Utils.method(Hass, :onToggleEntityStateCompleted));
   }
 
-  function onSetAlarmCompleted(error, data) {
-    if (error != null) {
-        App.getApp().viewController.removeLoaderImmediate();
-        App.getApp().viewController.showError(error);
-        return;
-    }
-
-    System.println("Alarm set successfully");
-    
-    App.getApp().viewController.removeLoader();
-
-    // Show confirmation
-    Ui.pushView(
-        new Ui.Confirmation("Alarm Set!"),
-        new Ui.ConfirmationDelegate(),
-        Ui.SLIDE_IMMEDIATE
-    );
-  }
-
   function setRandomAlarm() {
-      var randomMinutes = (System.getClockTime().sec + System.getTimer()) % 60;
-      var hours = 22;
-      
-      System.println("Setting alarm to 13:" + randomMinutes.format("%02d"));
-      
-      App.getApp().viewController.showLoader("Setting Alarm");
-      
-      client.setAlarmTime(hours, randomMinutes, Utils.method(Hass, :onSetAlarmCompleted));
+    // Use Ui classes directly without creating custom view for now
+    System.println("Opening alarm view");
+    
+    try {
+        var alarmView = new AlarmView();
+        var alarmDelegate = new AlarmDelegate(alarmView);
+        
+        Ui.pushView(alarmView, alarmDelegate, Ui.SLIDE_UP);
+    } catch (ex) {
+        System.println("Error opening alarm view: " + ex.getErrorMessage());
+        App.getApp().viewController.showError("Failed to open alarm");
+    }
   }
-
-
 }
 
 class HassController {
