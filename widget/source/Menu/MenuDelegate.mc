@@ -11,12 +11,8 @@ class MenuDelegate extends Ui.Menu2InputDelegate {
     function onSelect(item) {
         App.getApp().resetInactivityTimer();
         var itemId = item.getId();
+
         
-        if (itemId == MenuController.MENU_SET_ALARM) {
-            Hass.setRandomAlarm();
-            Ui.popView(Ui.SLIDE_IMMEDIATE);
-            return true;
-        }
         if (itemId == MenuController.MENU_SWITCH_TO_ENTITIES) {
             Ui.popView(Ui.SLIDE_IMMEDIATE);
 
