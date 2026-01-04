@@ -18,7 +18,8 @@ class MenuController {
         MENU_SELECT_START_VIEW_SCENES,
         MENU_SELECT_START_VIEW_ENTITIES_SCENES,
 
-        MENU_BACK
+        MENU_BACK,
+        MENU_SET_ALARM  
     }
 
     hidden var _delegate;
@@ -33,6 +34,12 @@ class MenuController {
         });
 
         if (App.getApp().isLoggedIn()) {
+            menu.addItem(new Ui.MenuItem(
+                "Set Alarm",
+                "",
+                MenuController.MENU_SET_ALARM,
+                {}
+            ));
             menu.addItem(new Ui.MenuItem(
                 "Scenes",
                 "",

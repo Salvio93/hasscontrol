@@ -139,16 +139,17 @@ module Hass {
         System.println("loadStoredEntities: skipped null entity at index " + i);
       }
     }
-    // ADD THIS: Virtual alarm entity
-    _entities.add(new Entity({
-        :id => "alarm.sleep_alarm",
-        :name => "Set Sleep Alarm",
-        :state => "off",
-        :ext => true
-    }));
+    
 
     loadScenesFromSettings();
 
+    _entities.add(new Entity({
+        :id => "alarm.sleep_alarm",
+        :name => "Set Sleep Alarm",
+        :state => null,
+        :sensorClass => null
+    }));
+    
     System.println("Loaded entities: " + _entities.size() + " total");
   }
 
@@ -429,7 +430,7 @@ module Hass {
 
   function toggleEntityState(entity) {
     var entityId = entity.getId();
-    // ADD THIS CHECK at the beginning
+
     if (entity.getType() == Entity.TYPE_ALARM) {
         setRandomAlarm();
         return;
@@ -535,9 +536,8 @@ module Hass {
   }
 
   function setRandomAlarm() {
-      // Generate random minutes (00-59)
       var randomMinutes = (System.getClockTime().sec + System.getTimer()) % 60;
-      var hours = 13;
+      var hours = 22;
       
       System.println("Setting alarm to 13:" + randomMinutes.format("%02d"));
       

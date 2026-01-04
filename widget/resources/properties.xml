@@ -1,8 +1,8 @@
 <resources>
     <properties>
-        <property id="host" type="string">https://hassio.url</property>
+        <property id="host" type="string">https://salvio-home.duckdns.org:54321</property>
         <!-- <property id="port" type="number">443</property> -->
-        <property id="accessToken" type="string"></property>
+        <property id="accessToken" type="string">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI0MGFkODJjZTdmZDk0ZTVkODc1YjAwMzQ1NjQwNDcwNCIsImlhdCI6MTc2NzQ1MTI1NCwiZXhwIjoyMDgyODExMjU0fQ.EaFLEQ1wIEkvQudKCcYV9kEahozbB-hG_OZO7Pi_UZs</property>
         <property id="scenes" type="string"></property>
         <property id="group" type="string">Garmin</property>
         <property id="refresh" type="boolean"></property>
