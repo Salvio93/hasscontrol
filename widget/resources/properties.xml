@@ -1,6 +1,6 @@
 <resources>
     <properties>
-        <property id="host" type="string">https://.duckdns.org:54321</property>
+        <property id="host" type="string">https://test.duckdns.org:54321</property>
         <!-- <property id="port" type="number">443</property> -->
         <property id="accessToken" type="string"></property>
         <property id="scenes" type="string"></property>
